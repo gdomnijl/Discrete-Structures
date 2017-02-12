@@ -18,6 +18,13 @@
     fun setMax(xs) = List.last(xs);
 
 (*Problem 3*)
-      
+
+
+(*Problem 5*)
+      datatype natural = Zero | Successor of natural;
+      fun isEven(Zero) = true | isEven(Successor(n)) = not(isEven(n));
+
+        fun times(Zero, Zero) = Zero | times(Zero, Successor(n)) = Zero | times(Successor(n),Zero) = Zero |
+        times(Successor(m),Successor(n)                                                            
 (*Revision*)
   fun flatten(nil) = [] | flatten(x::xs) = x @ flatten(xs);
