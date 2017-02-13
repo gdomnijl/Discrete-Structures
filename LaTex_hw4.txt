@@ -1,0 +1,90 @@
+%%%%%%%%%%% HEADER %%%%%%%%%%%%%%% 
+\documentclass[11pt]{article} %% change font here
+\usepackage[margin=1in]{geometry} %% change margins here
+\usepackage{amsfonts,amsmath} %% necessary 
+\usepackage{parskip} %% fixes annoying indenting things 
+\usepackage{tikz} %% for pictures, not usually necessary
+\usepackage{listings} %% for code, not usually necessary
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%% SOME MACROS %%%%%%%%%%% 
+%% Macros make your life easier. Here are some examples: 
+\newcommand{\Z}{\mathbb{Z}} %% integers
+\newcommand{\Zp}{\mathbb{Z}^+} %% positive integers
+\newcommand{\N}{\mathbb{N}} %% naturals
+\newcommand{\R}{\mathbb{R}} %% reals
+\newcommand{\Q}{\mathbb{Q}} %% rationals
+%% I'm super finnicky about spacing so I find these handy
+\newcommand{\ttspc}{\hspace{1mm}}
+\newcommand{\tspc}{\hspace{2mm}}
+\newcommand{\spc}{\hspace{5mm}}
+\newcommand{\ttc}{, \ttspc}
+\newcommand{\spceq}{\tspc = \tspc}
+\newcommand{\spcp}{\ttspc + \ttspc}
+\newcommand{\spcm}{\tspc - \tspc}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{center}
+\begin{Large} \textbf{\LaTeX \tspc CSC 208 Homework Week 4 }\end{Large} 
+\vspace{5mm} \textbf{Feb 13th 2017 Monday} \\
+\vspace{5mm} \textbf{Jinlin He} \\
+\date{Feb 3rd 2017 Friday}
+\author{Jinlin He}
+\end{center} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Problem 1:} \\
+ {datatype option = NONE $\mid$ SOME of int; \\
+  fun optionMax(NONE, NONE) = NONE $\mid$ optionMax(SOME(m),NONE) = SOME(m)
+$\mid$ optionMax(NONE, SOME(m)) = SOME(m) $\mid$  optionMax(SOME(m), SOME(n)) = if m $>=$ n then SOME(m) else SOME(n);
+}
+
+\textbf{Problem 2:} \\
+{fun setAddElem(nil, y) = [y] $\mid$ setAddElem(x::xs, y) = if y < x then y::x::xs
+  else if y = x then x::xs else x::setAddElem(xs,y);\\
+  
+    fun setUnion(nil, ys) = ys $\mid$  setUnion(xs, nil) = xs $\mid$ 
+    setUnion(x::xs,y::ys) = if x $<$ y then x::setUnion(xs,y::ys)
+                            else if x = y then x::setUnion(xs, ys)
+                            else y::setUnion(x::xs,ys);\\
+                            
+    fun setIntersection(nil, ys) = nil $\mid$  setIntersection(xs,nil)=nil $\mid$ setIntersection(x::xs, y::ys) = if x = y then x::setIntersection(xs,ys) else if x $<$ y then setIntersection(xs,y::ys) else setIntersection(x::xs,ys); 
+
+    fun setMax(xs) = List.last(xs);
+}
+
+\textbf{Problem 3:}\\
+{a. $\{b\}\cup$ A basically gives us all the elements in A plus b since b is not an element of A. Adding one more element into set A means that the powerset of A expands by inserting b in every set in the powerset of A (including inserting b into the empty set that results in $\left\{b\right\}$). Therefore, if there are x elements in powerset A, there will be an additional x elements in powerset of union A and the set containing b. Therefore, cardinality of powerset of union A and the set containing b is two times of the cardinality of powerset A. \\
+
+b. If we start from the beginning that A is an empty set, $|A|$ = 0, $\mathcal{P}$(A) = $\{\emptyset\}$, $\mid\mathcal{P}(A)\mid$ = 1. Then if we start adding one element into A, according to part a., we know that the cardinality of the new powerset of A will be twice the cardinality of previous powerset of A, which is 1*2 = 2. Then whenever we add one additional element into A, the cardinality of the new powerset of A doubles. When $\mid$A$\mid$ = n, which means we have added nth element to A, cardinality of the new powerset of A is doubled n times, which will be 2^n.  
+}
+
+\textbf{Problem 4:} \\
+ {a. $\mathcal{P}(\mathcal{P}(\{1,2\})) = \mathcal{P}(\{\{\emptyset\},\{1\},\{2\},\{1,2\}\}) = \{\emptyset,
+ \{\emptyset\},\{1\},\{2\},\{1,2\},
+\{\{\emptyset\},\{1\}\},\{\{\emptyset\},\{2\}\},\\ 
+\{\{\emptyset\},\{1,2\}\},
+\{\{1\},\{2\}\},\{\{1\},\{1,2\}\},\{\{2\},\{1,2\}\},
+    \{\{\emptyset\},\{1\},\{2\}\}, \{\{\emptyset\},\{1\},\{1,2\}\},\\
+    \{\{\emptyset\},\{2\},\{1,2\}\},\{\{1\},\{2\},\{1,2\}\},
+\{\{\emptyset\},\{1\},\{2\},\{1,2\}\}\} \\
+     \mid\mathcal{P}(\mathcal{P}(\{1,2\}))\mid = 16.$ \\
+(Citation: Only with Maddie Kirwin's advice of replacing each element with letter A,B,C,D, I could possibly with )\\
+
+b. $\mathbb{Z}$ is the set of all integers. Powerset of $\mathbb{R}$ is the set of all possible subsets of $\mathbb{R}$. Since $\mathbb{Z}$ is a subset of $\mathbb{R}$, therefore $\mathbb{Z}$ is an element of the powerset of $\mathbb{R}$. Therefore $\mathbb{Z}$ $\in$ $\mathbb{R}$ but $\mathbb{Z}$ $\not \subset$ $\mathbb{R}$.
+
+
+c. Yes. Since powerset of a set X is the set of all possible subsets of X. While A $\cap$ B is the set of all common elements in both A and B. Therefore, powerset of A $\cap$ B is all possible combination of the common elements in both A and B. The $\mathcal{P}(A) \cap \mathcal{P}(B)$ then  
+powerset of inter
+}
+
+
+\textbf{Problem 5:}
+ {fun divideAll(x :int,y :int) = ((x div y), (x mod y), (Real.fromInt(x) / Real.fromInt(y)))}
+
+ \textbf{Problem 6:}
+{fun reverse("") = "" $\mid$ reverse(x::xs) = reverse(xs) +  x;} \\
+ \textbf{Problem 7:}
+{fun  geoSeries(0,a,r) = a $\mid$ geoSeries(n,a,r) = a*pow(r,n) + geoSeries(n-1,a,r); 
+}
+\end{document}
