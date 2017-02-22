@@ -1,0 +1,9 @@
+(*At Mentor Session *)
+datatype popForm = Var of string | Neg of popForm | And of propForm * propForm
+                    |Or of propForm * propForm;
+ 
+(*Taking in a propForm, and a list of strings with truth values*)
+fun truthValue(Var(n),xs:string set) = isElem(a,xs)
+    |truthValue(Neg(p),xs)= not(truthValue(p,xs))
+    |truthValue(And(p,q),xs) = truthValue(p,xs) andalso truthValue(q,xs)
+    |truthValue(Or(p,q),xs) = truthValue(p,xs) orelse truthValue(q,xs);

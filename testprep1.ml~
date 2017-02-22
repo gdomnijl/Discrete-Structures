@@ -1,0 +1,7 @@
+
+fun cartprod(xs,[])=[]
+   |cartprod(xs,y::ys) =
+       let pairs = map(fn x->(x,y),xs)
+        in pairs@cartprod(xs,ys)
+        end;
+(*do no recursion but two maps*)

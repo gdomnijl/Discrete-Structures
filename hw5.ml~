@@ -1,0 +1,6 @@
+(*homework 5*)
+(*Problem 1*)
+fun totalNumVariables(Var(s))= 1
+|totalNumVariables(And(p,q)) = totalNumVariables(p) + totalNumVariables(q)
+|totalNumVariables(Or(p,q)) = totalNumVariables(p) + totalNumVariables(q)
+|totalNumVariables(Neg(p)) =  totalNumVariables(p);
